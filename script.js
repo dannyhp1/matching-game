@@ -10,15 +10,15 @@ let lockBoard = false;
 let firstCard, secondCard;
 
 function flipCard() {
-	console.log(firstCard, secondCard);
-
 	if(lockBoard) {
 		return;
 	}
 
 	if(this === firstCard) {
-		/* If you click on the first card, then you click on the same card, it will not register
-		that same card as the second card. */
+		/* If you click on the first card, then you click on the same card,
+		it will reflip the card. */
+		this.classList.remove("flip");
+		resetBoard();
 		return;
 	}
 
