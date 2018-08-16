@@ -1,3 +1,6 @@
+// Audio for when a match is completed.
+const matchedSound = new Audio("sounds/matched.wav");
+
 // Get all cards on the board.
 const allCards = document.querySelectorAll(".matching-card");
 
@@ -42,6 +45,7 @@ function checkMatch() {
 	/* Check to see if the cards matched. */
 	if(firstCard.dataset.framework === secondCard.dataset.framework) {
 		/* If the cards matched! */
+		matchedSound.play();
 		disableCards();
 	} else {
 		/* If the cards did not match! */
