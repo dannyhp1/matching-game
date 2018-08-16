@@ -1,0 +1,11 @@
+* {
+	padding: 0px;
+	margin: 0px;
+	box-sizing: border-box;
+}
+
+body {
+	height: 100vh; /* Body will take up 100% of the height space. */
+	background: #2A4E6E;
+
+}
