@@ -21,8 +21,13 @@ function flipCard() {
 
 		/* Check to see if the cards matched. */
 		if(firstCard.dataset.framework === secondCard.dataset.framework) {
+			/* If the cards matched! */
 			firstCard.removeEventListener("click", flipCard);
 			secondCard.removeEventListener("click", flipCard);
+		} else {
+			/* If the cards did not match! */
+			firstCard.classList.remove("flip");
+			secondCard.classList.remove("flip");
 		}
 	}
 }
