@@ -10,8 +10,15 @@ let lockBoard = false;
 let firstCard, secondCard;
 
 function flipCard() {
-	if(lockBoard) {
+	console.log(firstCard, secondCard);
 
+	if(lockBoard) {
+		return;
+	}
+
+	if(this === firstCard) {
+		/* If you click on the first card, then you click on the same card, it will not register
+		that same card as the second card. */
 		return;
 	}
 
@@ -26,7 +33,6 @@ function flipCard() {
 		return;
 	} 
 	/* Second time the player flipped the card. */
-	hasFlippedCard = false;
 	secondCard = this;
 
 	checkMatch();
@@ -55,6 +61,8 @@ function checkMatch() {
 function disableCards() {
 	firstCard.removeEventListener("click", flipCard);
 	secondCard.removeEventListener("click", flipCard);
+
+	resetBoard();
 }
 
 function reflipCards() {
@@ -64,8 +72,13 @@ function reflipCards() {
 		firstCard.classList.remove("flip");
 		secondCard.classList.remove("flip");
 
-		lockBoard = false;
+		resetBoard();
 	}, 750);
+}
+
+function resetBoard() {
+	[hasFlippedCard, lockBoard] = [false, false];
+	[firstCard, secondCard] = [null, null];
 }
 
 // For each card, whenever it's clicked, execute the function: flipCard()
