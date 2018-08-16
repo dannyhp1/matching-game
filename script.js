@@ -13,25 +13,45 @@ function flipCard() {
 		hasFlippedCard = true;
 		firstCard = this;
 
-		console.log([hasFlippedCard, firstCard]);
-	} else {
-		/* Second time the player flipped the card. */
-		hasFlippedCard = false;
-		secondCard = this;
+		return;
+	} 
+	/* Second time the player flipped the card. */
+	hasFlippedCard = false;
+	secondCard = this;
 
-		/* Check to see if the cards matched. */
-		if(firstCard.dataset.framework === secondCard.dataset.framework) {
-			/* If the cards matched! */
-			firstCard.removeEventListener("click", flipCard);
-			secondCard.removeEventListener("click", flipCard);
-		} else {
-			/* If the cards did not match! */
-			setTimeout(() => {
-				firstCard.classList.remove("flip");
-				secondCard.classList.remove("flip");
-			}, 750);
-		}
+	checkMatch();
+}
+
+function checkMatch() {
+	/* Check to see if the cards matched. */
+	if(firstCard.dataset.framework === secondCard.dataset.framework) {
+		/* If the cards matched! */
+		disableCards();
+	} else {
+		/* If the cards did not match! */
+		reflipCards();
 	}
+
+	/*
+	Practiced using tenary operator.
+	condition ? statement1 : statement2;
+
+	let isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
+
+	isMatch ? disableCards() : unflipCards();
+	*/
+}
+
+function disableCards() {
+	firstCard.removeEventListener("click", flipCard);
+	secondCard.removeEventListener("click", flipCard);
+}
+
+function reflipCards() {
+	setTimeout(() => {
+		firstCard.classList.remove("flip");
+		secondCard.classList.remove("flip");
+	}, 750);
 }
 
 // For each card, whenever it's clicked, execute the function: flipCard()
