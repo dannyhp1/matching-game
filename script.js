@@ -2,9 +2,19 @@
 const allCards = document.querySelectorAll(".matching-card");
 
 let hasFlippedCard = false;
+
+/* If user tries to flip another set of cards before the first set of cards is flipped,
+logic is broken. Lock the board when 2 cards chosen, unlock board after matching logic. */
+let lockBoard = false;
+
 let firstCard, secondCard;
 
 function flipCard() {
+	if(lockBoard) {
+
+		return;
+	}
+
 	// 'this' refers to the the element that caused the event.
 	this.classList.add("flip");
 
@@ -48,9 +58,13 @@ function disableCards() {
 }
 
 function reflipCards() {
+	lockBoard = true;
+
 	setTimeout(() => {
 		firstCard.classList.remove("flip");
 		secondCard.classList.remove("flip");
+
+		lockBoard = false;
 	}, 750);
 }
 
