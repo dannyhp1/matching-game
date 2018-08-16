@@ -81,5 +81,16 @@ function resetBoard() {
 	[firstCard, secondCard] = [null, null];
 }
 
+/* Wrap this function so it is immediately evoked after itss definition. */
+(function shuffle() {
+	allCards.forEach(card => {
+		/* Math.random returns number between 0 and 1 excluding 1. Want a number
+		between 0 to 11, we multiply that random number by 12. Then use .floor() method
+		to get an integer. */
+		let randomPosition = Math.floor(Math.random() * 12);
+		card.style.order = randomPosition;
+	})
+})();
+
 // For each card, whenever it's clicked, execute the function: flipCard()
 allCards.forEach(card => card.addEventListener("click", flipCard));
