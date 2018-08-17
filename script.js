@@ -34,7 +34,7 @@ function flipCard() {
 		firstCard = this;
 
 		return;
-	} 
+	}
 	/* Second time the player flipped the card. */
 	secondCard = this;
 
